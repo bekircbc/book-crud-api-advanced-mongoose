@@ -1,0 +1,64 @@
+body {
+	background-color: #333;
+	color: #ccc;
+	padding: 0 20px;
+
+	div.editPanel {
+		background-color: #555;
+		border: 1px solid #888;
+		padding: 10px;
+		border-radius: 5px;
+		margin-top: 10px;
+
+		input {
+			width: 90%;
+		}
+
+		textarea {
+			width: 90%;
+			height: 100px;
+		}
+
+		.innerButtons {
+			margin-top: 5px;
+
+			button {
+				margin-left: 5px;
+			}
+		}
+	}
+
+	div.addArea {
+		margin-bottom: 20px;
+	}
+
+	div.books {
+		div.book {
+			background-color: #222;
+			margin-bottom: 10px;
+			padding: 20px;
+			display: flex;
+
+			img {
+				height: 150px;
+			}
+
+			div.info {
+				margin-left: 20px;
+
+				div.title {
+					color: rgb(212, 212, 138);
+					font-size: 1.5rem;
+				}
+
+				div.buttons {
+					margin-top: 10px;
+
+					button {
+						margin-left: 5px;
+					}
+				}
+			}
+		}
+	}
+}
