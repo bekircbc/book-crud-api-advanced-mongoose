@@ -1,5 +1,12 @@
 import mongoose from 'mongoose';
 
+const authorSchema = new mongoose.Schema({
+	firstName: String,
+	lastName: String,
+	url: String,
+	email: String,
+});
+
 const bookSchema = new mongoose.Schema({
 	title: String,
 	description: String,
@@ -10,10 +17,7 @@ const bookSchema = new mongoose.Schema({
 	whenPurchased: Date,
 	relatedBook: mongoose.SchemaTypes.ObjectId,
 	topics: [String],
-	author: {
-		firstName: String,
-		lastName: String,
-	},
+	author: authorSchema,
 });
 
 export const Book = mongoose.model('book', bookSchema);
