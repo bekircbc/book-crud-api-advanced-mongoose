@@ -49,6 +49,18 @@ app.post('/book', async (req, res) => {
 	}
 });
 
+app.get('/books-by-language/:language', async (req, res) => {
+	const language = req.params.language;
+	const books = await Book.where('language')
+		.equals(language)
+		.sort('title')
+		.populate('relatedBook');
+	res.status(200).json({
+		message: `fetched all books in ${language}`,
+		books,
+	});
+});
+
 //getting books data
 
 app.get('/book', async (req, res) => {
@@ -103,5 +115,5 @@ app.delete('/book/:id', async (req, res) => {
 });
 
 app.listen(port, () => {
-	console.log(`Listening on http://localhost:${port}`);
+	console.log(`backend on port :  http://localhost:${port}`);
 });
