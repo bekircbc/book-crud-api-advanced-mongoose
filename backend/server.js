@@ -107,18 +107,38 @@ app.get('/long-books-by-language/:language', async (req, res) => {
 
 //putting data
 
+// app.put('/book/:id', async (req, res) => {
+// 	const id = req.params.id;
+// 	const oldBook = await Book.findOne({ _id: id });
+// 	await Book.updateOne({ _id: id }, { $set: { ...req.body } });
+// 	const newBook = await Book.findOne({ _id: id });
+// 	res.status(200).json({
+// 		message: 'replaced book with id = ' + id,
+// 		oldBook,
+// 		newBook,
+// 	});
+// });
+
+//putting data nach pre and post
+
 app.put('/book/:id', async (req, res) => {
 	const id = req.params.id;
 	const oldBook = await Book.findOne({ _id: id });
-	await Book.updateOne({ _id: id }, { $set: { ...req.body } });
+	const book = await Book.findOne({ _id: id });
+	Object.entries(req.body).forEach((kv) => {
+		const key = kv[0];
+		const value = kv[1];
+		book[key] = value;
+	});
+
+	await book.save();
 	const newBook = await Book.findOne({ _id: id });
 	res.status(200).json({
-		message: 'replaced book with id = ' + id,
+		message: 'replaced book with id=' + id,
 		oldBook,
 		newBook,
 	});
 });
-
 //patching data from
 
 app.patch('/book/:id', async (req, res) => {

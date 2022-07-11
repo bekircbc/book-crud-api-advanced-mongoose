@@ -57,6 +57,7 @@ const bookSchema = new mongoose.Schema({
 		type: Date,
 		default: () => Date.now(),
 	},
+	whenUpdated: Date,
 });
 
 bookSchema.methods.enhanceTitle = function () {
