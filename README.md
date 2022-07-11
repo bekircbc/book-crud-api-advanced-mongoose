@@ -57,3 +57,20 @@
     	max: 2000,
     	required: true,
     },
+
+# language, whencreated, relatedbook
+
+        	language: {
+    	type: String,
+    	trim: true,
+    },
+
+    relatedBook: {
+    	type: mongoose.SchemaTypes.ObjectId,
+    	ref: 'book',
+    },
+
+    whenCreated: {
+    	type: Date,
+    	default: () => Date.now(),
+    },

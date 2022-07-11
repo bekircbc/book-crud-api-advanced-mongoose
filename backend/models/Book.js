@@ -38,13 +38,23 @@ const bookSchema = new mongoose.Schema({
 		max: 2000,
 		required: true,
 	},
-	language: String,
+	language: {
+		type: String,
+		trim: true,
+	},
 	imageUrl: String,
 	buyUrl: String,
 	whenPurchased: Date,
-	relatedBook: mongoose.SchemaTypes.ObjectId,
+	relatedBook: {
+		type: mongoose.SchemaTypes.ObjectId,
+		ref: 'book',
+	},
 	topics: [String],
 	author: authorSchema,
+	whenCreated: {
+		type: Date,
+		default: () => Date.now(),
+	},
 });
 
 export const Book = mongoose.model('book', bookSchema);
