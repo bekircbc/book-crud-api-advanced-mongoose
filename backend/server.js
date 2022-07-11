@@ -146,24 +146,32 @@ app.put('/book/:id', async (req, res) => {
 //patching data from
 
 app.patch('/book/:id', async (req, res) => {
-	const id = req.params.id;
-	const oldBook = await Book.findOne({ _id: id });
-	await Book.updateOne({ _id: id }, { $set: { ...req.body } });
-	const newBook = await Book.findOne({ _id: id });
-	res.status(200).json({
-		message: 'patched book with id = ' + id,
-		oldBook,
-		newBook,
-	});
+	try {
+		const id = req.params.id;
+		const oldBook = await Book.findOne({ _id: id });
+		await Book.updateOne({ _id: id }, { $set: { ...req.body } });
+		const newBook = await Book.findOne({ _id: id });
+		res.status(200).json({
+			message: 'patched book with id = ' + id,
+			oldBook,
+			newBook,
+		});
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
 });
 
 //deleting data from
 
 app.delete('/book/:id', async (req, res) => {
-	const id = req.params.id;
-	const book = await Book.findOne({ _id: id });
-	await Book.deleteOne({ _id: id });
-	res.status(200).json({ message: 'deleted book with id = ' + id, book });
+	try {
+		const id = req.params.id;
+		const book = await Book.findOne({ _id: id });
+		await Book.deleteOne({ _id: id });
+		res.status(200).json({ message: 'deleted book with id = ' + id, book });
+	} catch (err) {
+		res.status(400).json({ error: err.message });
+	}
 });
 
 app.listen(port, () => {
