@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+const pageLimit = 150;
+
 const authorSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
@@ -67,7 +69,7 @@ bookSchema.statics.findShortEnglishBooks = function () {
 	return this.where('language')
 		.equals('english')
 		.where('numberOfPages')
-		.lte(100);
+		.lte(149);
 };
 
 bookSchema.statics.findShortBooksByLanguage = function (language) {
@@ -79,6 +81,10 @@ bookSchema.statics.findShortBooksByLanguage = function (language) {
 
 bookSchema.query.byLanguage = function (language) {
 	return this.where('language').equals(language);
+};
+
+bookSchema.query.isLongBook = function () {
+	return this.where('numberOfPages').gte(pageLimit);
 };
 
 export const Book = mongoose.model('book', bookSchema);
