@@ -77,4 +77,8 @@ bookSchema.statics.findShortBooksByLanguage = function (language) {
 		.lte(100);
 };
 
+bookSchema.query.byLanguage = function (language) {
+	return this.where('language').equals(language);
+};
+
 export const Book = mongoose.model('book', bookSchema);
