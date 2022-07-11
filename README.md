@@ -48,3 +48,12 @@
     	required: true,
     	trim: true,
     },
+
+# number of pages
+
+        	numberOfPages: {
+    	type: Number,
+    	min: 10,
+    	max: 2000,
+    	required: true,
+    },

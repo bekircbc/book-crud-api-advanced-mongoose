@@ -32,7 +32,12 @@ const bookSchema = new mongoose.Schema({
 		trim: true,
 	},
 	description: String,
-	numberOfPages: Number,
+	numberOfPages: {
+		type: Number,
+		min: 10,
+		max: 2000,
+		required: true,
+	},
 	language: String,
 	imageUrl: String,
 	buyUrl: String,
