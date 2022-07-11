@@ -57,4 +57,10 @@ const bookSchema = new mongoose.Schema({
 	},
 });
 
+bookSchema.methods.enhanceTitle = function () {
+	if (this.numberOfPages >= 200) {
+		this.title = this.title + ' (long book)';
+	}
+};
+
 export const Book = mongoose.model('book', bookSchema);
