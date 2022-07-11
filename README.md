@@ -18,3 +18,23 @@
         url: String,
         email:String
         });
+
+# for emails schema
+
+        	email: {
+    	type: String,
+    	validate: [
+    		{
+    			validator: function (v) {
+    				return v.toLowerCase() === v;
+    			},
+    			message: 'Email must be lowercase.',
+    		},
+    		{
+    			validator: function (v) {
+    				return /^\S+@\S+\.\S+$/.test(v);
+    			},
+    			message: 'Please enter a valid email.',
+    		},
+    	],
+    },

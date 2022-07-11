@@ -4,7 +4,23 @@ const authorSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	url: String,
-	email: String,
+	email: {
+		type: String,
+		validate: [
+			{
+				validator: function (v) {
+					return v.toLowerCase() === v;
+				},
+				message: 'Email must be lowercase.',
+			},
+			{
+				validator: function (v) {
+					return /^\S+@\S+\.\S+$/.test(v);
+				},
+				message: 'Please enter a valid email.',
+			},
+		],
+	},
 });
 
 const bookSchema = new mongoose.Schema({
