@@ -96,6 +96,18 @@ app.get('/short-books-by-language/:language', async (req, res) => {
 	});
 });
 
+app.get('/long-books-by-language/:language', async (req, res) => {
+	const language = req.params.language;
+	const books = await Book.where()
+		.byLanguage(language)
+		.where('numberOfPages')
+		.gte(150);
+	res.status(200).json({
+		message: `fetched all long books in ${language}`,
+		books,
+	});
+});
+
 //putting data
 
 app.put('/book/:id', async (req, res) => {
