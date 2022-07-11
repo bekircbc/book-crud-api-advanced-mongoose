@@ -63,4 +63,11 @@ bookSchema.methods.enhanceTitle = function () {
 	}
 };
 
+bookSchema.statics.findShortEnglishBooks = function () {
+	return this.where('language')
+		.equals('english')
+		.where('numberOfPages')
+		.lte(200);
+};
+
 export const Book = mongoose.model('book', bookSchema);
