@@ -38,3 +38,13 @@
     		},
     	],
     },
+
+# for title of book
+
+                	title: {
+    	type: String,
+    	minLength: 5,
+    	maxLength: 255,
+    	required: true,
+    	trim: true,
+    },

@@ -24,7 +24,13 @@ const authorSchema = new mongoose.Schema({
 });
 
 const bookSchema = new mongoose.Schema({
-	title: { type: String, required: true },
+	title: {
+		type: String,
+		minLength: 5,
+		maxLength: 255,
+		required: true,
+		trim: true,
+	},
 	description: String,
 	numberOfPages: Number,
 	language: String,
