@@ -109,9 +109,9 @@ app.get('/long-books-by-language/:language', async (req, res) => {
 
 app.put('/book/:id', async (req, res) => {
 	const id = req.params.id;
-	const oldBook = await Book.find({ _id: id });
+	const oldBook = await Book.findOne({ _id: id });
 	await Book.updateOne({ _id: id }, { $set: { ...req.body } });
-	const newBook = await Book.find({ _id: id });
+	const newBook = await Book.findOne({ _id: id });
 	res.status(200).json({
 		message: 'replaced book with id = ' + id,
 		oldBook,
@@ -123,9 +123,9 @@ app.put('/book/:id', async (req, res) => {
 
 app.patch('/book/:id', async (req, res) => {
 	const id = req.params.id;
-	const oldBook = await Book.find({ _id: id });
+	const oldBook = await Book.findOne({ _id: id });
 	await Book.updateOne({ _id: id }, { $set: { ...req.body } });
-	const newBook = await Book.find({ _id: id });
+	const newBook = await Book.findOne({ _id: id });
 	res.status(200).json({
 		message: 'patched book with id = ' + id,
 		oldBook,
@@ -137,7 +137,7 @@ app.patch('/book/:id', async (req, res) => {
 
 app.delete('/book/:id', async (req, res) => {
 	const id = req.params.id;
-	const book = await Book.find({ _id: id });
+	const book = await Book.findOne({ _id: id });
 	await Book.deleteOne({ _id: id });
 	res.status(200).json({ message: 'deleted book with id = ' + id, book });
 });

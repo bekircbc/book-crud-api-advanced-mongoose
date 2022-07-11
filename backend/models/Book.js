@@ -93,4 +93,9 @@ bookSchema.virtual('bookInfoText').get(function () {
 
 bookSchema.set('toJSON', { virtuals: true });
 
+bookSchema.pre('save', function (next) {
+	this.whenUpdates = Date.now();
+	next();
+});
+
 export const Book = mongoose.model('book', bookSchema);
