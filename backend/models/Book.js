@@ -87,4 +87,10 @@ bookSchema.query.isLongBook = function () {
 	return this.where('numberOfPages').gte(pageLimit);
 };
 
+bookSchema.virtual('bookInfoText').get(function () {
+	return `${this.title}, ${this.numberOfPages} pages: ${this.description}`;
+});
+
+bookSchema.set('toJSON', { virtuals: true });
+
 export const Book = mongoose.model('book', bookSchema);
