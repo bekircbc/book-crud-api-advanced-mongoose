@@ -98,4 +98,11 @@ bookSchema.pre('save', function (next) {
 	next();
 });
 
+bookSchema.post('save', function (doc, next) {
+	const dt = new Date();
+	const timestamp = dt.toISOString();
+	console.log(`${timestamp}: updated book "${doc.title}`);
+	next();
+});
+
 export const Book = mongoose.model('book', bookSchema);
